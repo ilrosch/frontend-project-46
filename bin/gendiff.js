@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+import gendiff from '../src/index.js';
 
 const program = new Command();
 
@@ -10,4 +11,5 @@ program
   .version('0.0.1', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format')
+  .action((file1, file2) => console.log(gendiff(file1, file2)))
   .parse();
