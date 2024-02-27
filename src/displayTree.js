@@ -3,7 +3,7 @@ import _ from 'lodash';
 const displayTree = (data1, data2) => {
   const sortedKeysArr = _.sortBy(Object.keys({ ...data1, ...data2 }));
   return sortedKeysArr.map((key) => {
-    if (!Object.prototype.hasOwnProperty.call(data1, key)) {
+    if (!_.has(data1, key)) {
       return {
         type: 'added',
         key,
@@ -11,7 +11,7 @@ const displayTree = (data1, data2) => {
       };
     }
 
-    if (!Object.prototype.hasOwnProperty.call(data2, key)) {
+    if (!_.has(data2, key)) {
       return {
         type: 'deleted',
         key,
