@@ -20,7 +20,7 @@ const formatting = (data) => {
         return buildString(' ', key, value);
       }
       default: {
-        return null;
+        throw new Error('Error - invalid type');
       }
     }
   }).join('');
