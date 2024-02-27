@@ -10,8 +10,16 @@ jobs:
       - name: dependency installation
         run: make install
 
+      - name: running linter
+        run: make lint
+
       - name: running tests
         run: make test
 
-      - name: running linter
-        run: make lint
+      - name: test & publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
