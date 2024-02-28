@@ -2,13 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { cwd } from 'node:process';
 
-import getTree from './displayTree.js';
-import formatting from './formatting.js';
+import getTree from './modules/displayTree.js';
+import formatting from './modules/formatting.js';
+import parsers from './modules/parsers.js';
 
 const readFile = (filePath) => {
   const fullFilePath = path.resolve(cwd(filePath), filePath);
   const data = fs.readFileSync(fullFilePath).toString();
-  return (path.extname(filePath) === '.json') ? JSON.parse(data) : data;
+  return parsers(path.extname(filePath), data);
 };
 
 const genDiff = (filePath1, filePath2) => {

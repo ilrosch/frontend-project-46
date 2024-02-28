@@ -3,7 +3,7 @@ import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { test, expect } from '@jest/globals';
+import { test, expect, describe } from '@jest/globals';
 
 import utility from '../src/index.js';
 
@@ -17,8 +17,26 @@ const genDiff = utility;
 
 const expectedJson = readFile('expectedJson.txt');
 
-test('genDiff', () => {
-  const pathFile1 = getFixturePath('file1.json');
-  const pathFile2 = getFixturePath('file2.json');
-  expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+describe('test the gendiff utility', () => {
+  test('extname (json)', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+  });
+
+  test('extname (yml/yaml)', () => {
+    const pathFileYml1 = getFixturePath('file1.yml');
+    const pathFileYml2 = getFixturePath('file2.yml');
+    expect(genDiff(pathFileYml1, pathFileYml2)).toEqual(expectedJson);
+
+    const pathFileYaml1 = getFixturePath('file1.yaml');
+    const pathFileYaml2 = getFixturePath('file2.yaml');
+    expect(genDiff(pathFileYaml1, pathFileYaml2)).toEqual(expectedJson);
+  });
+
+  test('extname (json/yml)', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.yml');
+    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+  });
 });
