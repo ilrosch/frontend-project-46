@@ -15,24 +15,43 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 
 const genDiff = utility;
 
-const expectedJson = readFile('expectedJson.txt');
+const expectedStylish = readFile('expectedStylish.txt');
+const expectedPlain = readFile('expectedPlain.txt');
 
 describe('test the gendiff utility', () => {
-  test('extname (json)', () => {
+  test('extname (json) stylish defualt', () => {
     const pathFile1 = getFixturePath('file1.json');
     const pathFile2 = getFixturePath('file2.json');
-    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedStylish);
   });
 
-  test('extname (json/yml)', () => {
+  test('extname (json/yml) stylish', () => {
     const pathFile1 = getFixturePath('file1.yml');
     const pathFile2 = getFixturePath('file2.json');
-    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+    expect(genDiff(pathFile1, pathFile2, 'stylish')).toEqual(expectedStylish);
   });
 
-  test('extname (json/yaml)', () => {
+  test('extname (json/yaml) stylish', () => {
     const pathFile1 = getFixturePath('file1.json');
     const pathFile2 = getFixturePath('file2.yaml');
-    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
+    expect(genDiff(pathFile1, pathFile2, 'stylish')).toEqual(expectedStylish);
+  });
+
+  test('extname (json) plain', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2, 'plain')).toEqual(expectedPlain);
+  });
+
+  test('extname (json/yml) plain', () => {
+    const pathFile1 = getFixturePath('file1.yml');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2, 'plain')).toEqual(expectedPlain);
+  });
+
+  test('extname (json/yaml) plain', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.yaml');
+    expect(genDiff(pathFile1, pathFile2, 'plain')).toEqual(expectedPlain);
   });
 });
