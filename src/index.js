@@ -3,7 +3,7 @@ import path from 'node:path';
 import { cwd } from 'node:process';
 
 import getTree from './modules/displayTree.js';
-import formatting from './modules/formatting.js';
+import formatting from './modules/formatting/index.js';
 import parsers from './modules/parsers.js';
 
 const readFile = (filePath) => {
@@ -12,11 +12,12 @@ const readFile = (filePath) => {
   return parsers(path.extname(filePath), data);
 };
 
-const genDiff = (filePath1, filePath2) => {
+const genDiff = (filePath1, filePath2, format = 'stylish') => {
   const dataFile1 = readFile(filePath1);
   const dataFile2 = readFile(filePath2);
   const tree = getTree(dataFile1, dataFile2);
-  return formatting(tree);
+  return formatting(tree, format);
+  // return console.log(JSON.stringify(tree, ' ', 2));
 };
 
 export default genDiff;

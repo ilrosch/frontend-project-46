@@ -19,6 +19,22 @@ const displayTree = (data1, data2) => {
       };
     }
 
+    if (_.isEqual(data1[key], data2[key])) {
+      return {
+        type: 'unchanged',
+        key,
+        value: data1[key],
+      };
+    }
+
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return {
+        type: 'node',
+        key,
+        children: displayTree(data1[key], data2[key]),
+      };
+    }
+
     if (data1[key] !== data2[key]) {
       return {
         type: 'changed',

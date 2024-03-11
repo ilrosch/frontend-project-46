@@ -24,19 +24,15 @@ describe('test the gendiff utility', () => {
     expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
   });
 
-  test('extname (yml/yaml)', () => {
-    const pathFileYml1 = getFixturePath('file1.yml');
-    const pathFileYml2 = getFixturePath('file2.yml');
-    expect(genDiff(pathFileYml1, pathFileYml2)).toEqual(expectedJson);
-
-    const pathFileYaml1 = getFixturePath('file1.yaml');
-    const pathFileYaml2 = getFixturePath('file2.yaml');
-    expect(genDiff(pathFileYaml1, pathFileYaml2)).toEqual(expectedJson);
+  test('extname (json/yml)', () => {
+    const pathFile1 = getFixturePath('file1.yml');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
   });
 
-  test('extname (json/yml)', () => {
+  test('extname (json/yaml)', () => {
     const pathFile1 = getFixturePath('file1.json');
-    const pathFile2 = getFixturePath('file2.yml');
+    const pathFile2 = getFixturePath('file2.yaml');
     expect(genDiff(pathFile1, pathFile2)).toEqual(expectedJson);
   });
 });
