@@ -16,18 +16,13 @@ const stringify = (data, count) => {
   const indentBracket = getIndentBracket(count);
   const result = Object.keys(data).map((key) => createString('  ', key, stringify(data[key], count + 1), indent));
 
-  return [
-    '{',
-    ...result,
-    `${indentBracket}}`,
-  ].join('\n');
+  return ['{', ...result, `${indentBracket}}`].join('\n');
 };
 
 const stylish = (tree) => {
   const iter = (currentValue, count) => {
     const indent = getIndent(count);
     const indentBracket = getIndentBracket(count);
-
     const result = currentValue.map((item) => {
       switch (item.type) {
         case 'added':
@@ -45,11 +40,7 @@ const stylish = (tree) => {
       }
     });
 
-    return [
-      '{',
-      ...result,
-      `${indentBracket}}`,
-    ].join('\n');
+    return ['{', ...result, `${indentBracket}}`].join('\n');
   };
 
   return iter(tree, 1);

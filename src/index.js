@@ -17,7 +17,6 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
   const dataFile2 = readFile(filePath2);
   const tree = getTree(dataFile1, dataFile2);
   return formatting(tree, format);
-  // return console.log(JSON.stringify(tree, ' ', 2));
 };
 
 export default genDiff;

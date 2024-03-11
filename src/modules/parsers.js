@@ -10,7 +10,7 @@ const parsers = (extname, data) => {
       return yaml.load(data);
     }
     default: {
-      throw new Error('Error parsers file');
+      throw new Error(`Error parsers file - ${extname}`);
     }
   }
 };
