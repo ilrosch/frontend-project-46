@@ -17,6 +17,7 @@ const genDiff = utility;
 
 const expectedStylish = readFile('expectedStylish.txt');
 const expectedPlain = readFile('expectedPlain.txt');
+const expectedJSON = readFile('expectedJSON.txt');
 
 describe('test the gendiff utility', () => {
   test('extname (json) stylish defualt', () => {
@@ -53,5 +54,23 @@ describe('test the gendiff utility', () => {
     const pathFile1 = getFixturePath('file1.json');
     const pathFile2 = getFixturePath('file2.yaml');
     expect(genDiff(pathFile1, pathFile2, 'plain')).toEqual(expectedPlain);
+  });
+
+  test('extname (json) json', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2, 'json')).toEqual(expectedJSON);
+  });
+
+  test('extname (json/yml) json', () => {
+    const pathFile1 = getFixturePath('file1.yml');
+    const pathFile2 = getFixturePath('file2.json');
+    expect(genDiff(pathFile1, pathFile2, 'json')).toEqual(expectedJSON);
+  });
+
+  test('extname (json/yaml) json', () => {
+    const pathFile1 = getFixturePath('file1.json');
+    const pathFile2 = getFixturePath('file2.yaml');
+    expect(genDiff(pathFile1, pathFile2, 'json')).toEqual(expectedJSON);
   });
 });

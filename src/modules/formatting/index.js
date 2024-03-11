@@ -9,6 +9,10 @@ const formatting = (data, format) => {
     case 'plain': {
       return plain(data);
     }
+
+    case 'json': {
+      return JSON.stringify(data, null, 2);
+    }
     default: {
       throw new Error(`Error formatting: ${format}`);
     }
