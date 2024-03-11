@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const stringify = (data) => {
   if (_.isObject(data)) {
