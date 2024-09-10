@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const displayTree = (data1, data2) => {
+const buildTree = (data1, data2) => {
   const sortedKeysArr = _.sortBy(Object.keys({ ...data1, ...data2 }));
   return sortedKeysArr.map((key) => {
     if (!_.has(data1, key)) {
@@ -12,7 +12,7 @@ const displayTree = (data1, data2) => {
     }
 
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return { type: 'node', key, children: displayTree(data1[key], data2[key]) };
+      return { type: 'node', key, children: buildTree(data1[key], data2[key]) };
     }
 
     if (data1[key] !== data2[key]) {
@@ -23,4 +23,4 @@ const displayTree = (data1, data2) => {
   });
 };
 
-export default displayTree;
+export default buildTree;

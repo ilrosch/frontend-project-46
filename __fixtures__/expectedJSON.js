@@ -1,4 +1,4 @@
-[
+const expected = `[
   {
     "type": "node",
     "key": "common",
@@ -121,4 +121,6 @@
       "fee": 100500
     }
   }
-]
+]`;
+
+export default expected;
